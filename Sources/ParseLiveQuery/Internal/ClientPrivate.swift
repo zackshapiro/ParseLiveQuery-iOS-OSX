@@ -148,11 +148,8 @@ extension Client: SRWebSocketDelegate {
         }
     }
 
-    public func webSocket(webSocket: SRWebSocket!, didReceiveMessage message: AnyObject?) {
-        guard let messageString = message as? String else {
-            fatalError("Socket got into inconsistent state and received \(message) instead.")
-        }
-        handleOperationAsync(messageString).continueWith { task in
+    public func webSocket(webSocket: SRWebSocket, didReceiveMessageWithString string: String) {
+        handleOperationAsync(string).continueWith { task in
             if let error = task.error {
                 print("Error: \(error)")
             }
@@ -208,9 +205,11 @@ extension Client {
         return Task(.Queue(queue)) {
             let jsonEncoded = operation.JSONObjectRepresentation
             let jsonData = try NSJSONSerialization.dataWithJSONObject(jsonEncoded, options: NSJSONWritingOptions(rawValue: 0))
-            let jsonString = String(data: jsonData, encoding: NSUTF8StringEncoding)
+            guard let jsonString = String(data: jsonData, encoding: NSUTF8StringEncoding) else {
+                fatalError("Failed to stringify JSON data - something went horribly wrong")
+            }
 
-            self.socket?.send(jsonString)
+            self.socket?.sendString(jsonString)
         }
     }
 

@@ -9,7 +9,7 @@ target 'ParseLiveQuery-OSX' do
   platform :osx, '10.9'
   pod 'Parse'
   pod 'Bolts-Swift'
-  pod 'SocketRocket'
+  pod 'SocketRocket', :git => 'https://github.com/facebook/SocketRocket'
 end
 
 target 'ParseLiveQuery-iOS' do
@@ -17,7 +17,7 @@ target 'ParseLiveQuery-iOS' do
   platform :ios, '8.0'
   pod 'Parse'
   pod 'Bolts-Swift'
-  pod 'SocketRocket'
+  pod 'SocketRocket', :git => 'https://github.com/facebook/SocketRocket'
 end
 
 target 'LiveQueryDemo' do
@@ -25,7 +25,7 @@ target 'LiveQueryDemo' do
   platform :osx, '10.9'
   pod 'Parse'
   pod 'Bolts-Swift'
-  pod 'SocketRocket'
+  pod 'SocketRocket', :git => 'https://github.com/facebook/SocketRocket'
 end
 
 target 'LiveQueryDemo-ObjC' do
@@ -33,5 +33,5 @@ target 'LiveQueryDemo-ObjC' do
   platform :osx, '10.9'
   pod 'Parse'
   pod 'Bolts-Swift'
-  pod 'SocketRocket'
+  pod 'SocketRocket', :git => 'https://github.com/facebook/SocketRocket'
 end
